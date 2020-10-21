@@ -32,7 +32,7 @@
             <div>COMPLETED</div> 
             <template for:each={completedTasks} for:item="todo">
                 <div class="item-class" key={todo.todoId}>
-                    <c-to-do-item key={todo.todoId} todo-id={todo.todoId} todo-name={todo.todoName}> todo-done={todo.todoDone}></c-to-do-item>
+                    <c-to-do-item key={todo.todoId} todo-id={todo.todoId} todo-name={todo.todoName} todo-done={todo.todoDone}></c-to-do-item>
 
                 </div>
             </template>

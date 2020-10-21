@@ -12,4 +12,3 @@ export default class ToDoItem extends LightningElement {
 
     }
 }
-}
