@@ -1,6 +1,6 @@
-public with sharing class ToDoController {
+public class ToDoController {
     @AuraEnabled
-    public static string addTodo(String  payload){
+    public static String addTodo(String  payload){
 
         ToDo payloadObject = (ToDo). JSON.deserialized(payload, ToDo.class);
         
@@ -34,7 +34,7 @@ public with sharing class ToDoController {
         SObject tsk = (SObject) Type.forName('ToDo__c').newInstance();
         tsk.put('Id', todoId);
 
-        delete tsks;
+        delete tsk;
 
     } 
 
@@ -84,7 +84,6 @@ public with sharing class ToDoController {
         public Date todoDate;
         @AuraEnabled
         public Boolean todoDone;
-
 
     }
 }
