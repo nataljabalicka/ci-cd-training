@@ -1,5 +1,6 @@
-import { LightningElement, track} from 'lwc';
-//import addToDo from ("@salesforce/apex/ToDoController.addToDo");
+import { LightningElement, track, api } from "lwc";
+import getCurrentTodos from "@salesforce/apex/ToDoController.getCurrentTodos";
+import addTodo from "@salesforce/apex/ToDoController.addTodo";
 
 export default class ToDoManager extends LightningElement {
 
@@ -61,24 +62,66 @@ export default class ToDoManager extends LightningElement {
 
     addToDoHandler()
     {
+    
+        //get input box html element
         const inputBox = this.template.querySelector("lightning-input");
-        console.log("inputBox = " + inputBox.value);
-
-        const todo =
-        {
-            todoName: inputBox.value,
-            todoDone: false,
-       
-        };
-
-        addToDo({payload: JSON.stringify(todo)}).then(response => {
-            console.log('Item inserted successfully!');
-        }).catch(error => {
-            console.error ('Error during insert' + error);
+        //create a new todo object based on input box value
+        const todo = { todoName: inputBox.value, done: false };
+        //call addtodo server method to add new todo object
+        //serialize todo object before sending to server
+        addTodo({ payload: JSON.stringify(todo) })
+        .then(result => {
+            if (result) {
+            //fetch fresh list of todos
+            this.fetchTodos();
+            }
+        })
+        .catch(error => {
+            console.error("Error in adding todo" + error);
         });
-        //this.todos.push(todo);
+
         inputBox.value = "";
+
+    } 
+
+      /**
+   * Fetch todos from server
+   * This method only retrives todos for today
+   */
+  fetchTodos() {
+    getCurrentTodos()
+      .then(result => {
+        if (result) {
+          //update todos property with result
+          this.todos = result;
+        }
+      })
+      .catch(error => {
+        console.error("Error in fetching todo" + error);
+      });
+  }
+
+  /**
+   * Fetch fresh list of todos once todo is updated
+   * This method is called on update event
+   * @param {*} event
+   */
+  updateTodoHandler(event) {
+    if (event) {
+      this.fetchTodos();
     }
+  }
+
+  /**
+   * Fetch fresh list of todos once todo is deleted
+   * This method is called on delete event
+   * @param {*} event
+   */
+  deleteTodoHandler(event) {
+    if (event) {
+      this.fetchTodos();
+    }
+  }
 
     get upcomingTasks()
     {
