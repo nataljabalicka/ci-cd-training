@@ -33,6 +33,7 @@ jobs:
           name: Create hub key
           command: |
             echo 'make hub key'
+            echo $DECRYPTION_IV
             #- mkdir keys
             #- echo $HUB_SERVER_KEY_HEX | xxd -r -ps >> keys/hub.key
             openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPTION_KEY -iv $DECRYPTION_IV
