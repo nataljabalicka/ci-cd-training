@@ -14,10 +14,10 @@ public class AnimalLocator {
             // Deserializes the JSON string into collections of primitive data types.
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
             // Cast the values in the 'animals' key as a list
-            Object animal = (Object) results.get('animal');
+            //Object animal = (Object) results.get('animal');
             System.debug('Received the following animals:');
-            System.debug(animal.get('name')); 
-            animalName = animal.get('name');
+            System.debug(results.get('name')); 
+            animalName = results.get('name');
 
         }
         return animalName;
