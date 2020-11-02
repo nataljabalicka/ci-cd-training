@@ -16,7 +16,7 @@ public class AnimalLocator {
             // Cast the values in the 'animals' key as a list
             Map<String, Object> animal = (Map<String, Object>)results.get('animal');
 
-            animalName = animal.get('name');
+            animalName = (String)animal.get('name');
                         
         }
         return animalName;
