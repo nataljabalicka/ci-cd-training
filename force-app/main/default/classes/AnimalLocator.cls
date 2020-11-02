@@ -14,7 +14,7 @@ public class AnimalLocator {
             // Deserializes the JSON string into collections of primitive data types.
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
             // Cast the values in the 'animals' key as a list
-            Object animal = <Object> results.get('animal');
+            Object animal = (Object)results.get('animal');
 
             Map<String, Object> animalProp = (Map<String, Object>)animal;
 
