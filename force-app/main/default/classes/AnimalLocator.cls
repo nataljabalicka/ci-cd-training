@@ -16,8 +16,8 @@ public class AnimalLocator {
             // Cast the values in the 'animals' key as a list
             Object animal = (Object) results.get('animal');
             System.debug('Received the following animals:');
-            System.debug(animal.name); 
-            animalName = animal.name;
+            System.debug(animal.get('name')); 
+            animalName = animal.get('name');
 
         }
         return animalName;

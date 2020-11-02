@@ -6,7 +6,8 @@ private class AnimalLocatorTest {
         Test.setMock(HttpCalloutMock.class, new AnimalLocatorMock()); 
         // This causes a fake response to be sent
         // from the class that implements HttpCalloutMock. 
-        HttpResponse response = AnimalLocator.getAnimalNameById('1');
+        Integer Id = 1;
+        HttpResponse response = AnimalLocator.getAnimalNameById(Id);
         // Verify that the response received contains fake values
         String contentType = response.getHeader('Content-Type');
         System.assert(contentType == 'application/json');
