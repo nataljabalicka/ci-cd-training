@@ -16,11 +16,10 @@ public class AnimalLocator {
             // Cast the values in the 'animals' key as a list
             Object animal = (Object) results.get('animal');
             System.debug('Received the following animals:');
-            debug.debug(animal); 
+            System.debug(animal.name); 
             animalName = animal.name;
 
         }
         return animalName;
-
     }
 }

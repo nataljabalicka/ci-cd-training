@@ -1,5 +1,5 @@
 @isTest
-public class AnimalLocatorMock implements HttpCalloutMock {
+global class AnimalLocatorMock implements HttpCalloutMock {
     // Implement this interface method
     global HTTPResponse respond(HTTPRequest request) {
         // Create a fake response
